@@ -1,0 +1,13 @@
+sudo: required
+#sudo:required gives us super user level permissions to execute this build
+services:
+  - docker
+#tells travis ci to use a copy of docker
+before_install:
+  - docker build -t IceBlueMink7/docker-react -f Dockerfile.dev .
+#has a series of commands that executers before the test is ran
+#building docker image befoer the test runs with Dockerfile.dev with the current directory
+
+#script is all the different commands that need to be ran when our test executes
+script:
+  - docker run IceBlueMink7/docker-react npm run test -- --coverage
