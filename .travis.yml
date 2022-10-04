@@ -9,7 +9,7 @@ before_install:
 #building docker image befoer the test runs with Dockerfile.dev with the current directory
 #script is all the different commands that need to be ran when our test executes
 script:
-  - docker run icebluemink7/docker-react npm run test -- --coverage
+  - docker run -e CI=true icebluemink7/docker-react npm run test -- --watchAll=false
 
 deploy:
   provider: elasticbeanstalk
@@ -22,4 +22,3 @@ deploy:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: "$AWS_SECRET_KEY"
-  
